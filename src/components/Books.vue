@@ -1,18 +1,30 @@
 <template>
     <div>
-        <div v-for="book in books" :key="book.id">
-            <Book :book="book" />
-        </div>
+        <table class="table table-striped mt-5">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Read?</th>
+                    <th></th>   <!-- space for edit button    -->
+                    <th></th>   <!-- space for delete button    -->
+                </tr>
+            </thead>
+
+            <tbody v-for="book in books" :key="book.id">
+                <Book :book="book" />
+            </tbody>
+        </table>
     </div>
 </template>
 
 <script>
-import Book from '@/components/Book'
+import Book from "@/components/Book";
 
 export default {
     name: "Books",
     components: {
-        Book,
+        Book
     },
     props: ["books"]
 };

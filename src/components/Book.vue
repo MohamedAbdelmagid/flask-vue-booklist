@@ -1,7 +1,18 @@
 <template>
-    <div>
-        <p>{{ book.title }}</p>
-    </div>
+    <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>
+            <span v-if="book.read">Yes</span>
+            <span v-else>No</span>
+        </td>
+        <td>
+            <i style="font-size: 1.3em;" class="btn fas fa-paint-brush btn-sm"></i>
+        </td>
+        <td>
+            <i style="font-size: 1.3em;" class="btn fas fa-trash-alt btn-sm"></i>
+        </td>
+    </tr>
 </template>
 
 <script>
