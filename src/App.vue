@@ -1,32 +1,59 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app">
+        <Books :books="books" />
     </div>
-    <router-view/>
-  </div>
 </template>
+
+<script>
+import Books from "@/components/Books";
+export default {
+    name: "app",
+    components: {
+        Books
+    },
+    data() {
+        return {
+            books: [
+                {
+                    id: 1,
+                    title: "The Art Of Seduction",
+                    author: "Robert Green",
+                    read: false
+                },
+                {
+                    id: 2,
+                    title: "David Copperfield",
+                    author: "Charles Dickens",
+                    read: true
+                },
+                {
+                    id: 3,
+                    title: "One Night at Call Centre",
+                    author: "Chetan Bhagat",
+                    read: false
+                },
+                {
+                    id: 4,
+                    title: "Half Girlfriend",
+                    author: "Chetan Bhagat",
+                    read: false
+                }
+            ]
+        };
+    }
+};
+</script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 </style>
