@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Books :books="books" />
+        <Books :books="books" v-on:del-book="deleteBook" />
     </div>
 </template>
 
@@ -40,6 +40,11 @@ export default {
                 }
             ]
         };
+    },
+    methods: {
+        deleteBook(id) {
+            this.books = this.books.filter(book => book.id !== id);
+        }
     }
 };
 </script>

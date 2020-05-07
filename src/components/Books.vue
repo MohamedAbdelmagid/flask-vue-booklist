@@ -12,7 +12,7 @@
             </thead>
 
             <tbody v-for="book in books" :key="book.id">
-                <Book :book="book" />
+                <Book :book="book" v-on:del-book="$emit('del-book', book.id)"/>
             </tbody>
         </table>
     </div>
