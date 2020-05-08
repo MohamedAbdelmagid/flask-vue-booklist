@@ -2,7 +2,7 @@
     <div id="app">
         <div class="content-section">
             <Header />
-			<AddBook />
+			<AddBook v-on:add-book="addBook" />
             <Books :books="books" v-on:del-book="deleteBook" />
         </div>
     </div>
@@ -10,6 +10,7 @@
 
 <script>
 import Books from "@/components/Books";
+import AddBook from "@/components/AddBook";
 import Header from "@/components/layout/Header";
 
 export default {
@@ -17,6 +18,7 @@ export default {
     components: {
         Books,
         Header,
+        AddBook
     },
     data() {
         return {
@@ -46,12 +48,20 @@ export default {
                     read: false
                 }
             ],
+            addBookForm: {
+                title: "",
+                author: "",
+                read: []
+            }
         };
     },
     methods: {
         deleteBook(id) {
             this.books = this.books.filter(book => book.id !== id);
-        }
+		},
+		addBook(newBook) {
+			this.books = [...this.books, newBook]
+		}
     }
 };
 </script>
