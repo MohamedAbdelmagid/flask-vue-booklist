@@ -2,8 +2,8 @@
     <div id="app">
         <div class="content-section">
             <Header />
-			<AddBook v-on:add-book="addBook" />
-            <Books :books="books" v-on:del-book="deleteBook" />
+            <AddBook v-on:add-book="addBook" />
+            <Books :books="books" v-on:del-book="deleteBook" v-on:read-status="changeReadStatus" />
         </div>
     </div>
 </template>
@@ -47,21 +47,22 @@ export default {
                     author: "Chetan Bhagat",
                     read: false
                 }
-            ],
-            addBookForm: {
-                title: "",
-                author: "",
-                read: []
-            }
+            ]
         };
     },
     methods: {
         deleteBook(id) {
             this.books = this.books.filter(book => book.id !== id);
-		},
-		addBook(newBook) {
-			this.books = [...this.books, newBook]
-		}
+        },
+        addBook(newBook) {
+            this.books = [...this.books, newBook];
+        },
+        changeReadStatus(id) {
+            let bookIndex = this.books.findIndex(book => book.id == id)
+            let newBooks = [...this.books]
+            newBooks[bookIndex] = {...newBooks[bookIndex], read: !newBooks[bookIndex].read}
+            this.books = newBooks
+        }
     }
 };
 </script>
