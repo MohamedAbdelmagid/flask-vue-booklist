@@ -10,6 +10,7 @@
 <script>
 import Books from "@/components/Books";
 import AddBook from "@/components/AddBook";
+import axios from "axios";
 
 export default {
     name: "app",
@@ -44,7 +45,8 @@ export default {
                     author: "Chetan Bhagat",
                     read: false
                 }
-            ]
+			],
+			apiEndpoint: "http://localhost:5000/books"
         };
     },
     methods: {
@@ -63,7 +65,12 @@ export default {
             };
             this.books = newBooks;
         }
-    }
+	},
+	created() {
+		axios.get(this.apiEndpoint)
+			.then(response => this.books = response.data)
+			.catch(err => console.log(err))
+	}
 };
 </script>
 
