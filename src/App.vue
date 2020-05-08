@@ -1,15 +1,22 @@
 <template>
     <div id="app">
-        <Books :books="books" v-on:del-book="deleteBook" />
+        <div class="content-section">
+            <Header />
+			<AddBook />
+            <Books :books="books" v-on:del-book="deleteBook" />
+        </div>
     </div>
 </template>
 
 <script>
 import Books from "@/components/Books";
+import Header from "@/components/layout/Header";
+
 export default {
     name: "app",
     components: {
-        Books
+        Books,
+        Header,
     },
     data() {
         return {
@@ -38,7 +45,7 @@ export default {
                     author: "Chetan Bhagat",
                     read: false
                 }
-            ]
+            ],
         };
     },
     methods: {
@@ -60,5 +67,15 @@ export default {
     align-items: center;
     flex-direction: column;
     justify-content: center;
+}
+.content-section {
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    padding: 30px;
+    width: 90%;
+    max-width: 550px;
+    position: relative;
 }
 </style>
