@@ -30,6 +30,7 @@ export default {
     methods: {
         addBook() {
             if (this.title === "" || this.author === "") {
+                this.$emit("fill-in-fields", 'Please fill in all fields !', true)
                 return
             }
 
