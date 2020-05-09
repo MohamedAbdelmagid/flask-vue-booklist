@@ -45,6 +45,18 @@ def books():
         books = Book.query.all()
         return jsonify([book.to_dict() for book in books])
 
+    if request.method == 'POST':
+        bookData = request.get_json()
+        title = bookData.get('title')
+        author = bookData.get('author')
+
+        book = Book(title=title, author=author)
+
+        db.session.add(book)
+        db.session.commit()
+
+        return jsonify(book.to_dict())
+
 @app.route('/books/<book_id>', methods=['PUT', 'DELETE'])
 def book(book_id):
     return "A book"

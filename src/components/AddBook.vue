@@ -25,23 +25,23 @@ export default {
         return {
             title: "",
             author: "",
-            lastId: 5
         };
     },
     methods: {
         addBook() {
+            if (this.title === "" || this.author === "") {
+                return
+            }
+
             // Build a book object and send it with the event
             const newBook = {
-                id: this.lastId,
                 title: this.title,
-                author: this.author,
-                read: false
-            }
-            this.$emit('add-book', newBook)
+                author: this.author
+            };
+            this.$emit("add-book", newBook);
 
-            this.title = ''
-            this.author = ''
-            this.lastId++
+            this.title = "";
+            this.author = "";
         }
     }
 };

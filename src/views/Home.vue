@@ -21,7 +21,7 @@ export default {
     data() {
         return {
             books: [],
-			apiEndpoint: "http://localhost:5000/books"
+            apiEndpoint: "http://localhost:5000/books"
         };
     },
     methods: {
@@ -29,7 +29,10 @@ export default {
             this.books = this.books.filter(book => book.id !== id);
         },
         addBook(newBook) {
-            this.books = [...this.books, newBook];
+            axios
+                .post(this.apiEndpoint, newBook)
+                .then(response => this.books = [...this.books, response.data])
+                .catch(err => console.log(err));
         },
         changeReadStatus(id) {
             let bookIndex = this.books.findIndex(book => book.id == id);
@@ -40,12 +43,13 @@ export default {
             };
             this.books = newBooks;
         }
-	},
-	created() {
-		axios.get(this.apiEndpoint)
-			.then(response => this.books = response.data)
-			.catch(err => console.log(err))
-	}
+    },
+    created() {
+        axios
+            .get(this.apiEndpoint)
+            .then(response => (this.books = response.data))
+            .catch(err => console.log(err));
+    }
 };
 </script>
 
