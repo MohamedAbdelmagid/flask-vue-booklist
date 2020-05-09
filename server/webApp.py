@@ -67,6 +67,15 @@ def book(book_id):
 
         return jsonify(book.to_dict())
 
+    else:
+        book = Book.query.filter_by(id=book_id).first()
+
+        book.read = not book.read
+        db.session.add(book)
+        db.session.commit()
+
+        return jsonify(book.to_dict())
+
 
     
 if __name__ == '__main__':

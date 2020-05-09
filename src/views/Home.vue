@@ -38,13 +38,18 @@ export default {
                 .catch(err => console.log(err));
         },
         changeReadStatus(id) {
-            let bookIndex = this.books.findIndex(book => book.id == id);
-            let newBooks = [...this.books];
-            newBooks[bookIndex] = {
-                ...newBooks[bookIndex],
-                read: !newBooks[bookIndex].read
-            };
-            this.books = newBooks;
+			axios
+				.put(this.apiEndpoint + `/${id}`)
+				.then(res => {
+					let bookIndex = this.books.findIndex(book => book.id == res.data.id);
+					let newBooks = [...this.books];
+					newBooks[bookIndex] = {
+						...newBooks[bookIndex],
+						read: !newBooks[bookIndex].read
+					};
+					this.books = newBooks;
+				})
+                .catch(err => console.log(err));
         }
     },
     created() {
