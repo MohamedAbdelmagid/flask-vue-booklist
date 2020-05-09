@@ -26,7 +26,10 @@ export default {
     },
     methods: {
         deleteBook(id) {
-            this.books = this.books.filter(book => book.id !== id);
+			axios
+				.delete(this.apiEndpoint + `/${id}`)
+				.then(res => this.books = this.books.filter(book => book.id !== res.data.id))
+                .catch(err => console.log(err));
         },
         addBook(newBook) {
             axios

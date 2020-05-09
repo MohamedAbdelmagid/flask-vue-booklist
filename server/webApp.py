@@ -59,7 +59,13 @@ def books():
 
 @app.route('/books/<book_id>', methods=['PUT', 'DELETE'])
 def book(book_id):
-    return "A book"
+    if request.method == 'DELETE':
+        book = Book.query.filter_by(id=book_id).first()
+
+        db.session.delete(book)
+        db.session.commit()
+
+        return jsonify(book.to_dict())
 
 
     
