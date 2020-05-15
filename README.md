@@ -17,7 +17,7 @@ npm run build
 
 ### Compiles the app file
 ```
-npm server/webApp.py
+python server/webApp.py
 ```
 
 ### To create your own database, import db object from an interactive Python shell
